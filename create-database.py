@@ -187,7 +187,7 @@ def start():
 
   global progress
 
-  with open('recipe_dataset.json') as json_file:
+  with open('dataset/recipe_dataset.json') as json_file:
     for line in json_file:
       if progress >= recipies_to_scrape:
         connection.commit()

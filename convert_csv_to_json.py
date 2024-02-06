@@ -1,8 +1,8 @@
 import csv
 import json
 
-csv_file_path = 'recipe_dataset.csv'
-json_file_path = 'recipe_dataset.json'
+csv_file_path = 'dataset/full_dataset.csv'
+json_file_path = 'dataset/recipe_dataset.json'
 
 # Define the CSV columns based on your sample data
 columns = ["id", "title", "ingredients", "directions", "link", "source", "NER"]
@@ -12,7 +12,12 @@ with open(csv_file_path, 'r', encoding='utf-8') as csv_file, \
   # Create a CSV reader
   reader = csv.reader(csv_file)
 
-  for row in reader:
+  print("Conversion started. This could take a few minutes...")
+
+  for row_count, row in enumerate(reader):
+    if row_count % 1000 == 0:
+      print(f"{row_count}/~2.3 million rows completed", end='\r')
+
     # Skip empty rows
     if not row:
       continue
